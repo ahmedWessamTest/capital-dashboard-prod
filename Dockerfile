@@ -1,15 +1,19 @@
-FROM node:20.12-alpine
+FROM node:20-alpine as build
 
 WORKDIR /app
 
-# Copy package.json and package-lock.json
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install
 
-# Copy built dist folder
-COPY dist ./dist
+COPY . .
+RUN npm run build --prod
 
-# Start the application
-CMD ["node", "dist/browser/main-T2CZ4QIZ.js"] 
+FROM nginx:alpine
+
+COPY --from=build /app/dist/browser /usr/share/nginx/html
+
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
