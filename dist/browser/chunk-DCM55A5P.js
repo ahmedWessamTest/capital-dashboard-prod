@@ -1,0 +1,1 @@
+import{S as o}from"./chunk-PSXZOWGB.js";var i=(()=>{class e{constructor(){}normalizeActiveStatus(r){return typeof r=="boolean"?r:typeof r=="string"?r==="1"||r.toLowerCase()==="true":r===1}static{this.\u0275fac=function(t){return new(t||e)}}static{this.\u0275prov=o({token:e,factory:e.\u0275fac,providedIn:"root"})}}return e})();export{i as a};

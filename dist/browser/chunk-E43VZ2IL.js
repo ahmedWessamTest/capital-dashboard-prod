@@ -1,0 +1,1 @@
+import{r}from"./chunk-FYJ5Y7AH.js";import{S as n,X as o}from"./chunk-PSXZOWGB.js";var s=(()=>{class t{constructor(i){this.http=i}login(i){return this.http.post("https://digitalbondmena.com/insurance/api/auth/signin",i)}static{this.\u0275fac=function(e){return new(e||t)(o(r))}}static{this.\u0275prov=n({token:t,factory:t.\u0275fac,providedIn:"root"})}}return t})();export{s as a};
