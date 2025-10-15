@@ -1,13 +1,16 @@
-FROM nginx:1.27-alpine
+FROM node:20.12-alpine
 
-WORKDIR /usr/share/nginx/html
-RUN rm -rf ./*
+WORKDIR /app
 
-# 👇 انسخ الملفات الجاهزة مباشرة من المسار الحالي
-COPY . .
+# Copy package.json and package-lock.json
+COPY package*.json ./
 
-# 👇 انسخ ملف إعدادات nginx
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Install dependencies
+RUN npm install
 
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# Copy built dist folder
+COPY dist ./dist
+
+
+# Start the application
+CMD ["node", "dist/browser/index.html"] 
