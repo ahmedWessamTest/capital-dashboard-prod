@@ -1,23 +1,17 @@
-# Stage 1: Build Angular app
-FROM node:20-alpine AS build
-
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build --configuration production
-
-# Stage 2: Serve with Nginx
+# استخدم Nginx فقط لاستضافة الملفات
 FROM nginx:1.27-alpine
 
-# Remove default Nginx static files
+# احذف ملفات Nginx الافتراضية
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copy build output from Angular
-COPY --from=build /app/dist/browser /usr/share/nginx/html
+# انسخ ملفات الـ build الجاهزة من dist/browser
+COPY dist/browser /usr/share/nginx/html
 
-# Copy custom Nginx config
+# انسخ إعدادات nginx المخصصة
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
+# افتح المنفذ 80
 EXPOSE 80
+
+# شغّل Nginx
 CMD ["nginx", "-g", "daemon off;"]
