@@ -2,10 +2,10 @@
   "name": "mesoestetic-db",
   "version": "1.0.0",
   "description": "capital insurance Dashboard",
-  "main": "dist/server/server.mjs",
+  "main": "dist/browser/index.html",
   "scripts": {
-    "start": "node dist/server/server.mjs",
-    "dev": "nodemon server/server.mjs"
+    "start": "node dist/browser/index.html",
+    "dev": "nodemon browser/index.html"
   },
   "dependencies": {
     "express": "^4.17.17",
